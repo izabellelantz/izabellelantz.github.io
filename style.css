@@ -1,0 +1,60 @@
+body {
+    background-color: rgb(0, 0, 0);
+}
+
+#about-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+#contact-info, #about-me {
+    background-color: rgb(255, 219, 240);
+    border: 5px solid rgb(255, 153, 213);
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+}
+
+#contact-info {
+    flex: 1;
+}
+
+#contact-info i {
+    font-size: 30px;
+    padding: 10px;
+}
+
+#contact-info a {
+    text-decoration: none;
+    color: hotpink;
+}
+
+#contact-info a:hover {
+    color: rgb(249, 38, 144);
+}
+
+#personal-links {
+    margin-top: 50px;
+    text-align: center;
+}
+
+#about-me {
+    flex: 3;
+}
+
+#about-me ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+#about-me ul li {
+    width: 50%;
+    margin-bottom: 10px; 
+}
+
+#about-me ul i {
+    color: hotpink
+}
