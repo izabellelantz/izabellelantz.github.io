@@ -3,85 +3,136 @@
 <html lang="en">
     <head>
         <title>Portfolio - Izabelle Lantz</title>
-
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-    </head>
-    
-    <body>
-        <div id="about-container">
-            <div id="contact-info">
-                <h1>Izabelle Lantz</h1>
+        <script>
+            function loadPage(contentId) {
+                const contentDiv = document.getElementById('main-cont');
 
-                <div id="personal-links">
-                    <a href="https://www.linkedin.com/in/izabellelantz" target="_blank">
-                        <i class="uil uil-linkedin"></i>
-                    </a>
+                if (contentId === 'about') {
+                    contentDiv.innerHTML = `
+                    <div id="internal-cont">
+                        <p>Hello!</p>
+                        <p>I'm currently in my last semester at Des Moines Area Community College studying Computer Information Systems.</p>
+                        <p>Passionate about web development, software engineering, data science, and game development!</p>
 
-                    <a href="https://github.com/izabellelantz" target="_blank">
-                        <i class="uil uil-github"></i>
-                    </a>
-                
-                    <a href="https://gitlab.com/izabellelantz" target="_blank">
-                        <i class="uil uil-gitlab"></i>
-                    </a>
-                </div>
+                        <b>Relevant Courses:</b>
+                        <ul>
+                            <li><i class="uil uil-book-open"></i> Information Computing</li>
+                            <li><i class="uil uil-book-open"></i> Introduction to Programming with Logic</li>
+                            <li><i class="uil uil-book-open"></i> Advanced C++</li>
+                            <li><i class="uil uil-book-open"></i> C#</li>
+                            <li><i class="uil uil-book-open"></i> Java</li>
+                            <li><i class="uil uil-book-open"></i> Introduction to JavaScript</li>
+                            <li><i class="uil uil-book-open"></i> Introduction to HTML and CSS</li>
+                            <li><i class="uil uil-book-open"></i> Introduction to Database</li>
+                            <li><i class="uil uil-book-open"></i> Python</li>
+                            <li><i class="uil uil-book-open"></i> Python II</li>
+                            <li><i class="uil uil-book-open"></i> C++</li>
+                            <li><i class="uil uil-book-open"></i> Advanced C++</li>
+                            <li><i class="uil uil-book-open"></i> Data Structures</li>
+                            <li><i class="uil uil-book-open"></i> Database and SQL</li>
+                            <li><i class="uil uil-book-open"></i> SQL/Oracle</li>
+                            <li><i class="uil uil-book-open"></i> Data Science I</li>
+                        </ul>
 
-                <div id="page-links">
-                    <button>About</button>
+                        <b>Certifications:</b>
+                        <ul>
+                            <li><i class="uil uil-award"></i> SQL Application Developer</li>
+                            <li><i class="uil uil-award"></i> Python Application Developer</li>
+                            <li><i class="uil uil-award"></i> C++ Developer</li>
+                            <li><i class="uil uil-award"></i> TechWise Full Stack Developer</li>
+                        </ul>
 
-                    <button>Projects</button>
+                        <b>Hobbies:</b>
+                        <ul>
+                            <li><i class="uil uil-heart"></i> Magic the Gathering</li>
+                            <li><i class="uil uil-heart"></i> Crocheting</li>
+                            <li><i class="uil uil-heart"></i> Reading</li>
+                            <li><i class="uil uil-heart"></i> Videogaming</li>
+                        </ul>
+                    </div>
+                    `;
+                } else if (contentId === 'favorites') {
+                    contentDiv.innerHTML = `
+                        <h2>My Favorites!</h2>
+                        <p>Here are some of my favorite things...</p>
 
-                    <button>Resume</button>
+                        <h3>Books:</h3>
+                        <div class="fav-cont">
+                            <a href="https://www.goodreads.com/book/show/62039276-fancy-bear-goes-phishing">
+                                <img src="./assets/fancy bear goes phishing - book.jpg" alt="Fancy Bear Goes Phishing - Scott J. Shapiro"/>
+                            </a>
 
-                    <button>Contact</button>
-                </div>
+                            <a href="https://www.goodreads.com/book/show/17285330-the-last-time-we-say-goodbye">
+                                <img src="./assets/the last time we say goodbye - book.jpg" alt="The Last Time We Say Goodbye - Cynthia Hand"/>
+                            </a>
 
+                            <a href="https://www.goodreads.com/book/show/48893162-dear-child">
+                                <img src="./assets/dear child - book.jpg" alt="Dear Child - Romy Hausmann"/>
+                            </a>
+                        </div>
+
+                        <h3>Games:</h3>
+                        <div class="fav-cont">
+
+                        </div>
+
+                    `;
+                } else if (contentId === 'projects') {
+                    contentDiv.innerHTML = `
+                        <h2>Projects</h2>
+                        <p>Check out some of my recent projects...</p>
+                    `;
+                } else if (contentId === 'resume') {
+                    contentDiv.innerHTML = `
+                        <h2>Resume</h2>
+                    `;
+                } else if (contentId === 'contact') {
+                    contentDiv.innerHTML = `
+                        <h2>Contact Me!</h2>
+                    `;
+                }
+
+                const allButtons = document.querySelectorAll('#page-links button');
+                allButtons.forEach(btn => btn.classList.remove('active')); // Remove 'active' class from all buttons
+                button.classList.add('active'); // Add 'active' class to the clicked button
+            }
+
+        window.onload = function() {
+            const defaultButton = document.getElementById('about-btn');
+            loadPage('about', defaultButton); // Load 'About' page by default
+        };
+    </script>
+</head>
+
+<body>
+    <div id="about-container">
+        <div id="contact-info">
+            <h1>Izabelle Lantz</h1>
+            <div id="personal-links">
+                <a href="https://www.linkedin.com/in/izabellelantz" target="_blank">
+                    <i class="uil uil-linkedin"></i>
+                </a>
+                <a href="https://github.com/izabellelantz" target="_blank">
+                    <i class="uil uil-github"></i>
+                </a>
+                <a href="https://gitlab.com/izabellelantz" target="_blank">
+                    <i class="uil uil-gitlab"></i>
+                </a>
             </div>
 
-            <div id="about-me">
-                <p>Hello!</p>
-                <p>I'm currently in my last semester at Des Moines Area Community College studying Computer Information Systems.</p>
-                <p>Passionate about web development, software engineering, data science, and game development!</p>
-
-                <b>Relevant Courses:</b>
-                <ul>
-                    <li><i class="uil uil-book-open"></i> Information Computing</li>
-                    <li><i class="uil uil-book-open"></i> Introduction to Programming with Logic</li>
-                    <li><i class="uil uil-book-open"></i> Advanced C++</li>
-                    <li><i class="uil uil-book-open"></i> C#</li>
-                    <li><i class="uil uil-book-open"></i> Java</li>
-                    <li><i class="uil uil-book-open"></i> Introduction to JavaScript</li>
-                    <li><i class="uil uil-book-open"></i> Introduction to HTML and CSS</li>
-                    <li><i class="uil uil-book-open"></i> Introduction to Database</li>
-                    <li><i class="uil uil-book-open"></i> Python</li>
-                    <li><i class="uil uil-book-open"></i> Python II</li>
-                    <li><i class="uil uil-book-open"></i> C++</li>
-                    <li><i class="uil uil-book-open"></i> Advanced C++</li>
-                    <li><i class="uil uil-book-open"></i> Data Structures</li>
-                    <li><i class="uil uil-book-open"></i> Database and SQL</li>
-                    <li><i class="uil uil-book-open"></i> SQL/Oracle</li>
-                    <li><i class="uil uil-book-open"></i> Data Science I</li>
-                </ul>
-
-                <b>Certifications:</b>
-                <ul>
-                    <li><i class="uil uil-award"></i> SQL Application Developer</li>
-                    <li><i class="uil uil-award"></i> Python Application Developer</li>
-                    <li><i class="uil uil-award"></i> C++ Developer</li>
-                    <li><i class="uil uil-award"></i> TechWise Full Stack Developer</li>
-                </ul>
-
-                <b>Hobbies:</b>
-                <ul>
-                    <li><i class="uil uil-heart"></i> Magic the Gathering</li>
-                    <li><i class="uil uil-heart"></i> Crocheting</li>
-                    <li><i class="uil uil-heart"></i> Reading</li>
-                    <li><i class="uil uil-heart"></i> Videogaming</li>
-                </ul>
-
+            <div id="page-links">
+                <button onclick="loadPage('about')">About</button>
+                <button onclick="loadPage('favorites')">My Favorites!</button>
+                <button onclick="loadPage('projects')">Projects</button>
+                <button onclick="loadPage('resume')">Resume</button>
+                <button onclick="loadPage('contact')">Contact</button>
             </div>
         </div>
 
-    </body>
-</html>
+        <div id="main-cont">
+            <!-- Content will be dynamically loaded here -->
+        </div>
+    </div>
+</body>

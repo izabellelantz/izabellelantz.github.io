@@ -17,12 +17,20 @@ body {
     height: 100%;
 }
 
-#contact-info, #about-me {
+#contact-info, #main-cont {
     background-color: rgb(255, 219, 240);
     border: 5px solid rgb(255, 153, 213);
     border-radius: 20px;
     padding: 10px;
     margin: 5px;
+}
+
+#internal-cont {
+    border: 2px solid rgb(255, 153, 213);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 3px 4px 5px rgba(255, 1, 128, 0.497);
 }
 
 #contact-info {
@@ -50,26 +58,48 @@ body {
 
 #page-links button {
     background: none;
-    border: none;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: 2px solid rgba(255, 105, 180, 0.373);
+    border-radius: 20px;
+    box-shadow: 2px 2px 4px rgba(97, 36, 67, 0.373);
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
 
 }
 
-#about-me {
+#main-cont {
     flex: 2;
 }
 
-#about-me ul {
+#main-cont ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     padding: 0;
 }
 
-#about-me ul li {
+#main-cont ul li {
     width: 50%;
     margin-bottom: 10px; 
 }
 
-#about-me ul i {
+#main-cont ul i {
     color: hotpink
+}
+
+.fav-cont {
+    flex: 3;
+}
+
+.fav-cont a {
+    text-decoration: none;
+}
+
+.fav-cont img {
+    width: 14%;
+    margin: 8px;
+    box-shadow: 3px 4px 5px rgb(57, 56, 56);
 }
