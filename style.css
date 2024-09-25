@@ -116,3 +116,9 @@ body {
 #skills p {
     font-size: 14px;
 }
+
+#p2024 ul p,
+#p2023 ul p,
+#p2022 ul p {
+    font-size: 12px;
+}
