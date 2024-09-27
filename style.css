@@ -65,11 +65,12 @@ body {
     border-top: none;
     border-bottom: 2px solid rgba(255, 105, 180, 0.373);
     border-radius: 20px;
+    color: black;
     box-shadow: 2px 2px 4px rgba(97, 36, 67, 0.373);
     width: 100%;
     padding: 10px;
     margin: 5px;
-
+    cursor: pointer;
 }
 
 #main-cont {
@@ -114,7 +115,7 @@ body {
 #education p,
 #experience p,
 #skills p {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 #p2024 ul p,
