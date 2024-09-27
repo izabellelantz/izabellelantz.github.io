@@ -122,3 +122,10 @@ body {
 #p2022 ul p {
     font-size: 12px;
 }
+
+#p2024 li,
+#p2023 li,
+#p2022 li {
+    border-bottom: 3px solid rgba(0, 0, 0, 0.075);
+    padding: 20px 0px;
+}
