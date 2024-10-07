@@ -107,7 +107,10 @@ body {
 }
 
 .fav-cont img {
-    width: 14%;
+    width: 10vw;
+    max-width: 120px;
+    min-height: 150px;
+    height: 16vh;
     margin: 8px;
     box-shadow: 3px 4px 5px rgb(57, 56, 56);
 }
@@ -115,7 +118,7 @@ body {
 #education p,
 #experience p,
 #skills p {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 #p2024 ul p,
