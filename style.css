@@ -133,3 +133,44 @@ body {
     border-bottom: 3px solid rgba(0, 0, 0, 0.075);
     padding: 20px 0px;
 }
+
+.collapsible {
+    background: none;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    width: 100%;
+    padding: 10px;
+}
+
+.collapsible-content {
+    max-height: 0;
+    visibility: hidden;
+    transition: max-height 0.2s ease-out;
+    padding: 0 10px;
+}
+
+.collapsible-content.active {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.arrow {
+    font-size: 11px;
+    transition: transform 0.2s ease;
+}
+
+.arrow.down::before {
+    content: "▼";
+}
+
+.arrow.up::before {
+    content: "▲";
+}
+
+.collapsible.active,
+.collapse:hover {
+    color: hotpink;
+}

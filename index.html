@@ -5,9 +5,38 @@
         <title>Portfolio - Izabelle Lantz</title>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-        <script>
+        <script>            
             function loadPage(contentId) {
                 const contentDiv = document.getElementById('main-cont');
+                const collapsibles = document.getElementsByClassName("collapsible");
+
+                function initializeCollapsibles() {
+                    const elements = document.getElementsByClassName("collapsible-content");
+                    const arrows = document.getElementsByClassName("arrow");
+    
+                    for (let i = 0; i < collapsibles.length; i++) {
+                        elements[i].style.display = "none";
+
+                        collapsibles[i].addEventListener("click", function () {
+                            this.classList.toggle("active");
+                            var content = elements[i];
+                            var arrow = arrows[i];
+
+                            content.classList.toggle("active");
+                            
+                            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+                            content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
+
+                            if (this.classList.contains('active')) {
+                                arrow.classList.remove('down');
+                                arrow.classList.add('up');
+                            } else {
+                                arrow.classList.remove('up');
+                                arrow.classList.add('down');
+                            }
+                        });
+                    }
+                };
 
                 if (contentId === 'about') {
                     contentDiv.innerHTML = `
@@ -16,42 +45,63 @@
                         <p>I'm currently in my last semester at Des Moines Area Community College studying Computer Information Systems.</p>
                         <p>Passionate about web development, software engineering, data science, and game development!</p>
 
-                        <b>Relevant Courses:</b>
-                        <ul style="font-size: 14px;">
-                            <li><i class="uil uil-book-open"></i> Information Computing</li>
-                            <li><i class="uil uil-book-open"></i> Introduction to Programming with Logic</li>
-                            <li><i class="uil uil-book-open"></i> Introduction to HTML and CSS</li>
-                            <li><i class="uil uil-book-open"></i> Introduction to JavaScript</li>
-                            <li><i class="uil uil-book-open"></i> Introduction to Database</li>
-                            <li><i class="uil uil-book-open"></i> C++</li>
-                            <li><i class="uil uil-book-open"></i> Advanced C++</li>
-                            <li><i class="uil uil-book-open"></i> C#</li>
-                            <li><i class="uil uil-book-open"></i> Java</li>
-                            <li><i class="uil uil-book-open"></i> Python</li>
-                            <li><i class="uil uil-book-open"></i> Python II</li>
-                            <li><i class="uil uil-book-open"></i> Data Structures</li>
-                            <li><i class="uil uil-book-open"></i> Database and SQL</li>
-                            <li><i class="uil uil-book-open"></i> SQL/Oracle</li>
-                            <li><i class="uil uil-book-open"></i> Data Science I</li>
-                        </ul>
+                        <button type="button" class="collapsible">
+                            <b>Relevant Courses:</b>
+                            <span class="arrow down"></span>
+                        </button>
+                        
+                        <div class="collapsible-content">
+                            <ul style="font-size: 14px;">
+                                <li><i class="uil uil-book-open"></i> Information Computing</li>
+                                <li><i class="uil uil-book-open"></i> Introduction to Programming with Logic</li>
+                                <li><i class="uil uil-book-open"></i> Introduction to HTML and CSS</li>
+                                <li><i class="uil uil-book-open"></i> Introduction to JavaScript</li>
+                                <li><i class="uil uil-book-open"></i> Introduction to Database</li>
+                                <li><i class="uil uil-book-open"></i> C++</li>
+                                <li><i class="uil uil-book-open"></i> Advanced C++</li>
+                                <li><i class="uil uil-book-open"></i> C#</li>
+                                <li><i class="uil uil-book-open"></i> Java</li>
+                                <li><i class="uil uil-book-open"></i> Python</li>
+                                <li><i class="uil uil-book-open"></i> Python II</li>
+                                <li><i class="uil uil-book-open"></i> Data Structures</li>
+                                <li><i class="uil uil-book-open"></i> Database and SQL</li>
+                                <li><i class="uil uil-book-open"></i> SQL/Oracle</li>
+                                <li><i class="uil uil-book-open"></i> Data Science I</li>
+                            </ul>
+                        </div>
 
-                        <b>Certifications:</b>
-                        <ul style="font-size: 14px;">
-                            <li><i class="uil uil-award"></i> SQL Application Developer</li>
-                            <li><i class="uil uil-award"></i> Python Application Developer</li>
-                            <li><i class="uil uil-award"></i> C++ Developer</li>
-                            <li><i class="uil uil-award"></i> TechWise Full Stack Developer</li>
-                        </ul>
+                        <button type="button" class="collapsible">
+                            <b>Certifications:</b>
+                            <span class="arrow down"></span>
+                        </button>
 
-                        <b>Hobbies:</b>
-                        <ul style="font-size: 14px;">
-                            <li><i class="uil uil-heart"></i> Magic the Gathering</li>
-                            <li><i class="uil uil-heart"></i> Crocheting</li>
-                            <li><i class="uil uil-heart"></i> Reading</li>
-                            <li><i class="uil uil-heart"></i> Videogaming</li>
-                        </ul>
+                        <div class="collapsible-content">
+                            <ul style="font-size: 14px;">
+                                <li><i class="uil uil-award"></i> SQL Application Developer</li>
+                                <li><i class="uil uil-award"></i> Python Application Developer</li>
+                                <li><i class="uil uil-award"></i> C++ Developer</li>
+                                <li><i class="uil uil-award"></i> TechWise Full Stack Developer</li>
+                            </ul>
+                        </div>
+
+                        <button type="button" class="collapsible">
+                            <b>Hobbies:</b>
+                            <span class="arrow down"></span>
+                        </button>
+
+                        <div class="collapsible-content">
+                            <ul style="font-size: 14px;">
+                                <li><i class="uil uil-heart"></i> Magic the Gathering</li>
+                                <li><i class="uil uil-heart"></i> Crocheting</li>
+                                <li><i class="uil uil-heart"></i> Reading</li>
+                                <li><i class="uil uil-heart"></i> Videogaming</li>
+                            </ul>
+                        </div>
                     </div>
                     `;
+                    
+                    initializeCollapsibles();
+                    
                 } else if (contentId === 'favorites') {
                     contentDiv.innerHTML = `
                         <div id="internal-cont">
@@ -138,15 +188,6 @@
                             <div id="p2024">
                                 
                                 <ul>
-                                    <li>
-                                        <video width="85%" controls loop style="border-radius: 10px;">
-                                            <source src="./assets/edh demo!.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>EDH Online
-                                        <p>Fan Content TCG</p></b>
-                                        <p><b>Stack:</b> React, TypeScript, JavaScript, HTML, CSS, Express, Node.JS, MongoDB, Socket.IO</p>
-                                    </li>
 
                                     <li>
                                         <video width="85%" controls loop style="border-radius: 10px;">
@@ -156,6 +197,16 @@
                                         <b>Experts *
                                         <p>Social Media Site For Professionals</p></b>
                                         <p><b>Stack:</b> HTML, CSS, JavaScript, MongoDB, Firebase</p>
+                                    </li>
+                                    
+                                    <li>
+                                        <video width="85%" controls loop style="border-radius: 10px;">
+                                            <source src="./assets/edh demo!.mp4" type="video/mp4">
+                                        </video>
+                                        <br></br>
+                                        <b>EDH Online
+                                        <p>Fan Content TCG</p></b>
+                                        <p><b>Stack:</b> React, TypeScript, JavaScript, HTML, CSS, Express, Node.JS, MongoDB, Socket.IO</p>
                                     </li>
 
                                     <li>
@@ -353,14 +404,14 @@
                 }
 
                 const allButtons = document.querySelectorAll('#page-links button');
-                allButtons.forEach(btn => btn.classList.remove('active')); // Remove 'active' class from all buttons
-                button.classList.add('active'); // Add 'active' class to the clicked button
+                allButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
             }
 
-        window.onload = function() {
-            const defaultButton = document.getElementById('about-btn');
-            loadPage('about', defaultButton); // Load 'About' page by default
-        };
+            window.onload = function() {
+                const defaultButton = document.getElementById('about-btn');
+                loadPage('about', defaultButton);
+            };
     </script>
 </head>
 
