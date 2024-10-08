@@ -8,16 +8,16 @@
         <script>            
             function loadPage(contentId) {
                 const contentDiv = document.getElementById('main-cont');
-                const collapsibles = document.getElementsByClassName("collapsible");
 
-                function initializeCollapsibles() {
-                    const elements = document.getElementsByClassName("collapsible-content");
+                function initializeExpandables() {
+                    const expandables = document.getElementsByClassName("expandable");
+                    const elements = document.getElementsByClassName("expandable-content");
                     const arrows = document.getElementsByClassName("arrow");
     
-                    for (let i = 0; i < collapsibles.length; i++) {
+                    for (let i = 0; i < expandables.length; i++) {
                         elements[i].style.display = "none";
 
-                        collapsibles[i].addEventListener("click", function () {
+                        expandables[i].addEventListener("click", function () {
                             this.classList.toggle("active");
                             var content = elements[i];
                             var arrow = arrows[i];
@@ -28,12 +28,54 @@
                             content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
 
                             if (this.classList.contains('active')) {
-                                arrow.classList.remove('down');
                                 arrow.classList.add('up');
                             } else {
                                 arrow.classList.remove('up');
-                                arrow.classList.add('down');
                             }
+                        });
+                    }
+                };
+
+                function initializeCollapsibles() {
+                    const collapsibles = document.getElementsByClassName("collapsible");
+                    const elements = document.getElementsByClassName("collapsible-content");
+                    const arrows = document.getElementsByClassName("arrow");
+    
+                    for (let i = 0; i < collapsibles.length; i++) {
+                        elements[i].style.display = "block";
+
+                        collapsibles[i].addEventListener("click", function () {
+                            this.classList.toggle("collapse");
+                            var content = elements[i];
+                            var arrow = arrows[i];
+
+                            content.classList.toggle("collapse");
+                            
+                            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                            content.style.maxHeight = content.style.maxHeight ? content.scrollHeight + "px" : null;
+
+                            if (this.classList.contains('collapse')) {
+                                arrow.classList.remove('up');
+                            } else {
+                                arrow.classList.add('up');
+                            }
+                        });
+                    }
+                };
+
+                function initializeResumeInfo() {
+                    const infoIcons = document.getElementsByClassName("info-prompt");
+                    const infoTxt = document.getElementsByClassName("info");
+
+                    for (let i = 0; i < infoIcons.length; i++) {
+                        infoTxt[i].style.display = "none";
+
+                        infoIcons[i].addEventListener("mouseenter", () => {
+                            infoTxt[i].style.display = "block";
+                        });
+
+                        infoIcons[i].addEventListener("mouseleave", () => {
+                            infoTxt[i].style.display = "none";
                         });
                     }
                 };
@@ -45,12 +87,12 @@
                         <p>I'm currently in my last semester at Des Moines Area Community College studying Computer Information Systems.</p>
                         <p>Passionate about web development, software engineering, data science, and game development!</p>
 
-                        <button type="button" class="collapsible">
+                        <button type="button" class="expandable">
                             <b>Relevant Courses:</b>
                             <span class="arrow down"></span>
                         </button>
                         
-                        <div class="collapsible-content">
+                        <div class="expandable-content">
                             <ul style="font-size: 14px;">
                                 <li><i class="uil uil-book-open"></i> Information Computing</li>
                                 <li><i class="uil uil-book-open"></i> Introduction to Programming with Logic</li>
@@ -70,12 +112,12 @@
                             </ul>
                         </div>
 
-                        <button type="button" class="collapsible">
+                        <button type="button" class="expandable">
                             <b>Certifications:</b>
                             <span class="arrow down"></span>
                         </button>
 
-                        <div class="collapsible-content">
+                        <div class="expandable-content">
                             <ul style="font-size: 14px;">
                                 <li><i class="uil uil-award"></i> SQL Application Developer</li>
                                 <li><i class="uil uil-award"></i> Python Application Developer</li>
@@ -84,12 +126,12 @@
                             </ul>
                         </div>
 
-                        <button type="button" class="collapsible">
+                        <button type="button" class="expandable">
                             <b>Hobbies:</b>
                             <span class="arrow down"></span>
                         </button>
 
-                        <div class="collapsible-content">
+                        <div class="expandable-content">
                             <ul style="font-size: 14px;">
                                 <li><i class="uil uil-heart"></i> Magic the Gathering</li>
                                 <li><i class="uil uil-heart"></i> Crocheting</li>
@@ -100,7 +142,7 @@
                     </div>
                     `;
                     
-                    initializeCollapsibles();
+                    initializeExpandables();
                     
                 } else if (contentId === 'favorites') {
                     contentDiv.innerHTML = `
@@ -109,8 +151,11 @@
                             <h2>My Favorites!</h2>
                             <p>Here are a few of my favorite things...</p>
 
-                            <h3>Books:</h3>
-                            <div class="fav-cont">
+                            <button type="button" class="collapsible">
+                                <h3>Books <span class="arrow up"></span></h3>
+                            </button>
+
+                            <div class="fav-cont collapsible-content">
                                 <a href="https://www.goodreads.com/book/show/62039276-fancy-bear-goes-phishing" target="_blank">
                                     <img src="./assets/fancy bear goes phishing - book.jpg" alt="Fancy Bear Goes Phishing - Scott J. Shapiro"/>
                                 </a>
@@ -124,8 +169,11 @@
                                 </a>
                             </div>
 
-                            <h3>Movies:</h3>
-                            <div class="fav-cont">
+                            <button type="button" class="collapsible">
+                                <h3>Movies <span class="arrow up"></span></h3>
+                            </button>
+
+                            <div class="fav-cont collapsible-content">
                                 <a href="https://www.imdb.com/title/tt6710474/" target="_blank">
                                     <img src="./assets/eeaao - movie.jpg" alt="Everything Everywhere All At Once"/>
                                 </a>
@@ -143,8 +191,11 @@
                                 </a>
                             </div>
 
-                            <h3>Shows:</h3>
-                            <div class="fav-cont">
+                            <button type="button" class="collapsible">
+                                <h3>Shows <span class="arrow up"></span></h3>
+                            </button>
+
+                            <div class="fav-cont collapsible-content ">
                                 <a href="https://www.imdb.com/title/tt0386676/" target="_blank">
                                     <img src="./assets/the office - show copy.jpg" alt="The Office"/>
                                 </a>
@@ -158,8 +209,11 @@
                                 </a>
                             </div>
 
-                            <h3>Games:</h3>
-                            <div class="fav-cont">
+                            <button type="button" class="collapsible">
+                                <h3>Games <span class="arrow up"></span></h3>
+                            </button>
+
+                            <div class="fav-cont collapsible-content">
                                 <a href="https://www.ea.com/games/apex-legends" target="_blank">
                                     <img src="./assets/APEX legends - game.jpg" alt="APEX Legends"/>
                                 </a>
@@ -173,182 +227,197 @@
                                 </a>
                             </div>
                         </div>
-
                     `;
+
+                    initializeCollapsibles();
+
                 } else if (contentId === 'projects') {
                     contentDiv.innerHTML = `
                         <div id="internal-cont">
 
                             <h2>Projects</h2>
-                            <p>Check out some of my projects...</p>
+                            <p>Check out some of my projects</p>
                             <p style="font-size: 12px;">* = Project created with a team</p>
                             <p style="font-size: 12px;">! = Project created for school</p>
 
-                            <h3>2024</h3>
-                            <div id="p2024">
+                            <button type="button" class="expandable">
+                                <h3>2024 <span class="arrow down"></span></h3>
+                            </button>
+
+                            <div class="expandable-content proj">
                                 
-                                <ul>
+                                    <ul>
 
-                                    <li>
-                                        <video width="85%" controls loop style="border-radius: 10px;">
-                                            <source src="./assets/experts-demo.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>Experts *
-                                        <p>Social Media Site For Professionals</p></b>
-                                        <p><b>Stack:</b> HTML, CSS, JavaScript, MongoDB, Firebase</p>
-                                    </li>
-                                    
-                                    <li>
-                                        <video width="85%" controls loop style="border-radius: 10px;">
-                                            <source src="./assets/edh demo!.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>EDH Online
-                                        <p>Fan Content TCG</p></b>
-                                        <p><b>Stack:</b> React, TypeScript, JavaScript, HTML, CSS, Express, Node.JS, MongoDB, Socket.IO</p>
-                                    </li>
+                                        <li>
+                                            <video width="85%" controls loop style="border-radius: 10px;">
+                                                <source src="./assets/experts-demo.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>Experts *
+                                            <p>Social Media Site For Professionals</p></b>
+                                            <p><b>Stack:</b> HTML, CSS, JavaScript, MongoDB, Firebase</p>
+                                        </li>
 
-                                    <li>
-                                        <video width="85%" muted controls loop style="border-radius: 10px;">
-                                            <source src="./assets/google clone - demo.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>Google Clone</b>
-                                        <p><b>Stack:</b> React, TypeScript, HTML, CSS</p>
-                                    </li>
+                                        <li>
+                                            <video width="85%" controls loop style="border-radius: 10px;">
+                                                <source src="./assets/edh demo!.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>EDH Online
+                                            <p>Fan Content TCG</p></b>
+                                            <p><b>Stack:</b> React, TypeScript, JavaScript, HTML, CSS, Express, Node.JS, MongoDB, Socket.IO</p>
+                                        </li>
 
-                                    <li>
-                                        <video width="85%" controls loop style="border-radius: 10px;">
-                                            <source src="./assets/trivia demo.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>Trivia !
-                                        <p>General Knowledge Questions</p></b>
-                                        <p><b>Stack:</b> Java, Swing</p>
-                                    </li>
+                                        <li>
+                                            <video width="85%" muted controls loop style="border-radius: 10px;">
+                                                <source src="./assets/google clone - demo.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>Google Clone</b>
+                                            <p><b>Stack:</b> React, TypeScript, HTML, CSS</p>
+                                        </li>
 
-                                    <li>
-                                        <video width="85%" controls loop muted style="border-radius: 10px;">
-                                            <source src="./assets/g4mers demo.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>G4MERS !
-                                        <p>Like Tinder, But For Videogames!</p></b>
-                                        <p><b>Stack:</b> Python, Tkinter, BeautifulSoup, MobyGames API</p>
-                                    </li>
+                                        <li>
+                                            <video width="85%" controls loop style="border-radius: 10px;">
+                                                <source src="./assets/trivia demo.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>Trivia !
+                                            <p>General Knowledge Questions</p></b>
+                                            <p><b>Stack:</b> Java, Swing</p>
+                                        </li>
 
-                                    <li>
-                                        <video width="85%" muted controls loop style="border-radius: 10px;">
-                                            <source src="./assets/student worker - demo.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>Student Worker Payroll !</b>
-                                        <p><b>Stack:</b> C#, HTML, CSS, ASP.NET</p>
-                                    </li>
+                                        <li>
+                                            <video width="85%" controls loop muted style="border-radius: 10px;">
+                                                <source src="./assets/g4mers demo.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>G4MERS !
+                                            <p>Like Tinder, But For Videogames!</p></b>
+                                            <p><b>Stack:</b> Python, Tkinter, BeautifulSoup, MobyGames API</p>
+                                        </li>
 
-                                    <li>
-                                        <video width="85%" muted controls loop style="border-radius: 10px;">
-                                            <source src="./assets/course registration - demo.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>Course Registration !</b>
-                                        <p><b>Stack:</b> Java, Swing</p>
-                                    </li>
-                                </ul>
+                                        <li>
+                                            <video width="85%" muted controls loop style="border-radius: 10px;">
+                                                <source src="./assets/student worker - demo.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>Student Worker Payroll !</b>
+                                            <p><b>Stack:</b> C#, HTML, CSS, ASP.NET</p>
+                                        </li>
+
+                                        <li>
+                                            <video width="85%" muted controls loop style="border-radius: 10px;">
+                                                <source src="./assets/course registration - demo.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>Course Registration !</b>
+                                            <p><b>Stack:</b> Java, Swing</p>
+                                        </li>
+                                    </ul>
 
                             </div>
 
-                            <h3>2023</h3>
-                            <div id="p2023">
+                            <button type="button" class="expandable">
+                                <h3>2023 <span class="arrow down"></span></h3>
+                            </button>
 
-                                <ul>
-                                    <li>
-                                        <video width="85%" muted controls loop style="border-radius: 10px;">
-                                            <source src="./assets/cr-official-trailer.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>Code Runner *
-                                        <p>Educational Platform Game</p></b>
-                                        <p><b>Stack:</b> GdScript, Godot Engine</p>
-                                    </li>
+                            <div class="expandable-content proj">
 
-                                    <li>
-                                        <video width="85%" muted controls loop style="border-radius: 10px;">
-                                            <source src="./assets/hangman - demo.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>Hangman *!</b>
-                                        <p><b>Stack:</b> C++, QT Creator</p>
-                                    </li>
+                                    <ul>
+                                        <li>
+                                            <video width="85%" muted controls loop style="border-radius: 10px;">
+                                                <source src="./assets/cr-official-trailer.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>Code Runner *
+                                            <p>Educational Platform Game</p></b>
+                                            <p><b>Stack:</b> GdScript, Godot Engine</p>
+                                        </li>
 
-                                    <li>
-                                        <video width="85%" muted controls loop style="border-radius: 10px;">
-                                            <source src="./assets/adventure travel - demo.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>Adventure Travel Site !</b>
-                                        <p><b>Stack:</b> HTML, CSS</p>
-                                    </li>
+                                        <li>
+                                            <video width="85%" muted controls loop style="border-radius: 10px;">
+                                                <source src="./assets/hangman - demo.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>Hangman *!</b>
+                                            <p><b>Stack:</b> C++, QT Creator</p>
+                                        </li>
 
-                                    <li>
-                                        <video width="85%" muted controls loop style="border-radius: 10px;">
-                                            <source src="./assets/koala site - demo.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>Koala Site !</b>
-                                        <p><b>Stack:</b> HTML, CSS</p>
-                                    </li>
+                                        <li>
+                                            <video width="85%" muted controls loop style="border-radius: 10px;">
+                                                <source src="./assets/adventure travel - demo.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>Adventure Travel Site !</b>
+                                            <p><b>Stack:</b> HTML, CSS</p>
+                                        </li>
 
-                                    <li>
-                                        <video width="85%" muted controls loop style="border-radius: 10px;">
-                                            <source src="./assets/royale playlist curator - demo.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>Royale Playlist Curator !
-                                        <p>Playlists Based On Clash Royale History</p></b>
-                                        <p><b>Stack:</b> Python, Django, SQLite, Clash Royale API, Spotify API</p>
-                                    </li>
+                                        <li>
+                                            <video width="85%" muted controls loop style="border-radius: 10px;">
+                                                <source src="./assets/koala site - demo.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>Koala Site !</b>
+                                            <p><b>Stack:</b> HTML, CSS</p>
+                                        </li>
 
-                                    <li>
-                                        <video width="85%" muted controls loop style="border-radius: 10px;">
-                                            <source src="./assets/dogsitting - demo.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>Dogsitting Application *!</b>
-                                        <p><b>Stack:</b> C++</p>
-                                    </li>
+                                        <li>
+                                            <video width="85%" muted controls loop style="border-radius: 10px;">
+                                                <source src="./assets/royale playlist curator - demo.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>Royale Playlist Curator !
+                                            <p>Playlists Based On Clash Royale History</p></b>
+                                            <p><b>Stack:</b> Python, Django, SQLite, Clash Royale API, Spotify API</p>
+                                        </li>
 
-                                    <li>
-                                        <video width="85%" muted controls loop style="border-radius: 10px;">
-                                            <source src="./assets/tic tac toe - demo.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>Tic-Tac-Toe !
-                                        <p><b>Stack:</b> C++</p>
-                                    </li>
+                                        <li>
+                                            <video width="85%" muted controls loop style="border-radius: 10px;">
+                                                <source src="./assets/dogsitting - demo.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>Dogsitting Application *!</b>
+                                            <p><b>Stack:</b> C++</p>
+                                        </li>
 
-                                </ul>
+                                        <li>
+                                            <video width="85%" muted controls loop style="border-radius: 10px;">
+                                                <source src="./assets/tic tac toe - demo.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>Tic-Tac-Toe !
+                                            <p><b>Stack:</b> C++</p>
+                                        </li>
+
+                                    </ul>
 
                             </div>
 
-                            <h3>2022</h3>
-                            <div id="p2022">
-                                
-                                <ul>
-                                    <li>
-                                        <video width="85%" muted controls loop style="border-radius: 10px;">
-                                            <source src="./assets/rochambeau - demo.mp4" type="video/mp4">
-                                        </video>
-                                        <br></br>
-                                        <b>Rochambeau !</b>
-                                        <p><b>Stack:</b> Python, Tkinter</p>
-                                    </li>
-                                </ul>
+                            <button type="button" class="expandable">
+                                <h3>2022 <span class="arrow down"></span></h3>
+\                            </button>
 
+                            <div class="expandable-content proj">
+                                
+                                    <ul>
+                                        <li>
+                                            <video width="85%" muted controls loop style="border-radius: 10px;">
+                                                <source src="./assets/rochambeau - demo.mp4" type="video/mp4">
+                                            </video>
+                                            <br></br>
+                                            <b>Rochambeau !</b>
+                                            <p><b>Stack:</b> Python, Tkinter</p>
+                                        </li>
+                                    </ul>
+
+                                </div>
                             </div>
                         </div>
                     `;
+
+                    initializeExpandables();
+
                 } else if (contentId === 'resume') {
                     contentDiv.innerHTML = `
                         <div id="internal-cont">
@@ -362,14 +431,37 @@
                                     <li>
                                         <b>Des Moines Area Community College</b>
                                         <p>August 2022 - December 2024</p>
-                                        <p>Major in Computer Information Systems</p>
+                                        <p>Major in Computer Information Systems
+                                            <span class="info-prompt">
+                                                <i style="font-size: 11px;" class="uil uil-info-circle"></i>
+                                            </span>
+
+                                            <div class="info">
+                                                <p><b>Honors:</b></p>
+                                                <p>Spring 2023 Dean's List, Fall 2023 President's List</p>
+                                            </div>
+                                        </p>
                                         <p>Certificates: SQL Application Developer, Python Application Developer, C++ Developer</p>
                                     </li>
                                     
                                     <li>
                                         <b>TechWise Cohort II</b>
                                         <p>March 2023 - September 2024</p>
-                                        <p>Full stack engineering program by TalentSprint, sponsored by Google</p>
+                                        <p>Full stack engineering program by TalentSprint, sponsored by Google 
+                                            <span class="info-prompt">
+                                                <i style="font-size: 11px;" class="uil uil-info-circle"></i>
+                                            </span>
+
+                                            <div class="info">
+                                                <p><b>Competencies:</b></p>
+                                                <p>Python, HTML, CSS, JavaScript, TypeScript, GdScript,
+                                                React, Express, MongoDB, Cypress, Jest, Git, DSA, Figma, Teamwork,
+                                                Corporate Proficiency</p>
+
+                                                <p><b>Capstone Projects:</b></p>
+                                                <p>Code Runner, Experts, EDH Online</p>
+                                            </div>
+                                        </p>
                                     </li>
                                 </ol>
                             </div>
@@ -380,13 +472,26 @@
                                 <ol>
                                     <li>
                                         <b>Data Annotation Tech</b>
-                                        <p>Freelance Data Annotator</p>
+                                        <p>Freelance Data Annotator
+                                            
+                                        </p>
                                         <p>April 2024 - Current</p>
                                     </li>
 
                                     <li>
                                         <b>Dominos</b>
-                                        <p>Assistant Manager</p>
+                                        <p>Assistant Manager
+                                            <span class="info-prompt">
+                                                <i style="font-size: 11px;" class="uil uil-info-circle"></i>
+                                            </span>
+
+                                            <div class="info">
+                                                <p>● Began as a Customer Service Representative at age 14, was quickly promoted to Shift Runner at 16, and achieved an Assistant Manager role at 18 due to strong performance and leadership abilities.</p>
+                                                <p>● Provided exceptional customer service by efficiently taking orders, resolving customer complaints, and ensuring a positive experience for all customers.</p>
+                                                <p>● Attained recognition as the fastest pizza maker in the franchise at 15, demonstrating a rapid learning ability and task efficiency.</p>
+                                                <p>● Proficiently managed tasks including scheduling, deposit handling, and inventory management, showcasing exceptional task prioritization and deadline management skills.</p>
+                                            </div>
+                                        </p>
                                         <p>February 2016 - November 2022</p>
                                     </li>
                                 </ol>
@@ -401,6 +506,9 @@
                             </div>
                         </div>
                     `;
+                    
+                    initializeResumeInfo();
+
                 }
 
                 const allButtons = document.querySelectorAll('#page-links button');

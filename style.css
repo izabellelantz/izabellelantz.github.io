@@ -121,17 +121,59 @@ body {
     font-size: 14px;
 }
 
-#p2024 ul p,
-#p2023 ul p,
-#p2022 ul p {
+.proj ul p {
     font-size: 12px;
 }
 
-#p2024 li,
-#p2023 li,
-#p2022 li {
+.proj li {
     border-bottom: 3px solid rgba(0, 0, 0, 0.075);
     padding: 20px 0px;
+}
+
+.expandable {
+    background: none;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    width: 100%;
+    padding: 10px;
+}
+
+.expandable-content {
+    max-height: 0;
+    visibility: hidden;
+    transition: max-height 0.2s ease-out;
+    padding: 0 10px;
+}
+
+.expandable-content.active {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.arrow {
+    font-size: 10px;
+    display: inline-block;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.arrow::before {
+    content: "▼";
+}
+
+.arrow.up {
+    transform: rotate(180deg);
+}
+
+.expandable.active {
+    color: hotpink;
+}
+
+.expandable:hover {
+    color: rgb(178, 70, 124);
 }
 
 .collapsible {
@@ -139,38 +181,46 @@ body {
     cursor: pointer;
     border: none;
     outline: none;
-    font-size: 17px;
+    font-size: 15px;
     width: 100%;
-    padding: 10px;
+    text-align: left;
+    color: hotpink;
 }
 
 .collapsible-content {
-    max-height: 0;
-    visibility: hidden;
-    transition: max-height 0.2s ease-out;
-    padding: 0 10px;
-}
-
-.collapsible-content.active {
     max-height: 500px;
     opacity: 1;
     visibility: visible;
+    transition: max-height 0.2s ease-out;
 }
 
-.arrow {
-    font-size: 11px;
-    transition: transform 0.2s ease;
+.collapsible:hover,
+.collapsible.collapse:hover {
+    color: rgb(178, 70, 124);
 }
 
-.arrow.down::before {
-    content: "▼";
+.collapsible.collapse {
+    color: black;
 }
 
-.arrow.up::before {
-    content: "▲";
+.collapsible-content.collapse {
+    max-height: 0;
+    visibility: hidden;
+    padding: 0 10px;
 }
 
-.collapsible.active,
-.collapse:hover {
-    color: hotpink;
+.info-prompt {
+    cursor: pointer;
+}
+
+.info {
+    width: 40%;
+    position: absolute;
+    right: 8%;
+    top: 10%;
+    background-color: rgb(255, 219, 240);
+    border: 2px solid rgb(255, 153, 213);
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 3px 4px 5px rgba(255, 1, 128, 0.497);
 }
